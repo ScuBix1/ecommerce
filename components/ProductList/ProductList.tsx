@@ -1,11 +1,44 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import path from 'node:path';
+import * as fs from 'node:fs';
+
+export function getBase64Image(relativePath: string) {
+  const filePath = path.join(process.cwd(), relativePath);
+  const imageBuffer = fs.readFileSync(filePath);
+  const mimeType = 'image/jpeg'; // adapte selon ton image
+  return `data:${mimeType};base64,${imageBuffer.toString('base64')}`;
+}
 
 const ProductList = () => {
   const products = [
-    { image: { src: '/dummy-img.jpg', alt: 'collection dummy' }, name: 'Dummy', price: 19.99 },
-    { image: { src: '/dummy-img.jpg', alt: 'collection dumma' }, name: 'Dumma', price: 19.99 },
-    { image: { src: '/dummy-img.jpg', alt: 'collection dummu' }, name: 'Dummu', price: 19.99 },
+    {
+      image: {
+        src: '/dummy-img.jpg',
+        alt: 'collection dummy',
+        blur_data_url: getBase64Image('public/dummy-img.jpg'),
+      },
+      name: 'Dummy',
+      price: 19.99,
+    },
+    {
+      image: {
+        src: '/dummy-img.jpg',
+        alt: 'collection dumma',
+        blur_data_url: getBase64Image('public/dummy-img.jpg'),
+      },
+      name: 'Dumma',
+      price: 19.99,
+    },
+    {
+      image: {
+        src: '/dummy-img.jpg',
+        alt: 'collection dummu',
+        blur_data_url: getBase64Image('public/dummy-img.jpg'),
+      },
+      name: 'Dummu',
+      price: 19.99,
+    },
   ];
   return (
     <section id="products" className="px-4 md:px-12 py-5 md:py-10 flex justify-center items-center">
@@ -18,6 +51,9 @@ const ProductList = () => {
               width={1000}
               height={1000}
               className="max-w-[17rem] h-72 object-cover object-center rounded-lg"
+              loading="lazy"
+              placeholder="blur"
+              blurDataURL={product.image.blur_data_url}
             />
             <div className="mt-4">
               <h2 className="font-semibold text-lg">{product.name}</h2>
