@@ -9,26 +9,35 @@ on:
       - main
 
 jobs:
-  build:
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: '21'
+      - run: yarn install
+      - run: yarn lint
 
-      - name: Install dependencies
-        run: yarn install
+  prettier:
+    name: Prettier Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '21'
+      - run: yarn install
+      - run: yarn prettier -c .
 
-      - name: Run ESLint
-        run: yarn lint
-
-      - name: Run Prettier check
-        run: yarn prettier
-
-      - name: Build Next.js
-        run: yarn build
+  build:
+    name: Build Next.js
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '21'
+      - run: yarn install
+      - run: yarn build

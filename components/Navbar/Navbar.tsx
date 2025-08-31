@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import {Search} from 'lucide-react';
+import { Search } from 'lucide-react';
 
 const Navbar = () => {
   return (
