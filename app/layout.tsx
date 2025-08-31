@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { ReactNode } from 'react';
 import Navbar from '@/components/Navbar/Navbar';
-import { Lato } from 'next/dist/compiled/@next/font/dist/google';
+import { Lato } from 'next/font/google';
 
 const lato = Lato({
   subsets: ['latin'],
