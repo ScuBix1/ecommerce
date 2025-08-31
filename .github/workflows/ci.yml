@@ -28,7 +28,7 @@ jobs:
         run: yarn lint
 
       - name: Run Prettier check
-        run: yarn prettier --check .
+        run: yarn prettier -c .
 
       - name: Build Next.js
         run: yarn build
