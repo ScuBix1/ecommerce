@@ -1,40 +1,41 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import path from 'node:path';
-import * as fs from 'node:fs';
-
-export function getBase64Image(relativePath: string) {
-  const filePath = path.join(process.cwd(), relativePath);
-  const imageBuffer = fs.readFileSync(filePath);
-  const mimeType = 'image/jpeg'; // adapte selon ton image
-  return `data:${mimeType};base64,${imageBuffer.toString('base64')}`;
-}
+import getBase64Image from '@/utils/getBase64Image';
 
 const ProductList = () => {
   const products = [
     {
       image: {
-        src: '/dummy-img.jpg',
+        src: '/longines-product.avif',
         alt: 'collection dummy',
-        blur_data_url: getBase64Image('public/dummy-img.jpg'),
+        blur_data_url: getBase64Image('public/longines-product.avif'),
       },
       name: 'Dummy',
       price: 19.99,
     },
     {
       image: {
-        src: '/dummy-img.jpg',
+        src: '/longines-product.avif',
         alt: 'collection dumma',
-        blur_data_url: getBase64Image('public/dummy-img.jpg'),
+        blur_data_url: getBase64Image('public/longines-product.avif'),
       },
       name: 'Dumma',
       price: 19.99,
     },
     {
       image: {
-        src: '/dummy-img.jpg',
+        src: '/longines-product.avif',
         alt: 'collection dummu',
-        blur_data_url: getBase64Image('public/dummy-img.jpg'),
+        blur_data_url: getBase64Image('public/longines-product.avif'),
+      },
+      name: 'Dummu',
+      price: 19.99,
+    },
+    {
+      image: {
+        src: '/longines-product.avif',
+        alt: 'collection dummu',
+        blur_data_url: getBase64Image('public/longines-product.avif'),
       },
       name: 'Dummu',
       price: 19.99,

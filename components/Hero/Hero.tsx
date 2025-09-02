@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import getBase64Image from '@/utils/getBase64Image';
 
 const Hero = () => {
   return (
@@ -22,7 +23,15 @@ const Hero = () => {
       </div>
 
       <div>
-        <Image src="/hero-img.png" alt="img" width={500} height={500} />
+        <Image
+          src="/longines.avif"
+          alt="img"
+          width={500}
+          height={500}
+          loading="lazy"
+          placeholder="blur"
+          blurDataURL={getBase64Image('public/longines.avif')}
+        />
       </div>
     </section>
   );
